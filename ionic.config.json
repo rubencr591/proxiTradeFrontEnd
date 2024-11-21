@@ -1,0 +1,7 @@
+{
+  "name": "ProxiTrade",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

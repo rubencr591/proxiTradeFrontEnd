@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit profile picture</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+
+<ion-content>
+  <ion-button expand="full" (click)="takePhoto()">Take photo</ion-button>
+  <ion-button expand="full" (click)="selectPhoto()">Select from the gallery</ion-button>
+  <ion-spinner *ngIf="isCapturingPhoto"></ion-spinner>
+</ion-content>
+

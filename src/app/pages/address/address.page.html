@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Address</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="form-container">
+    <form [formGroup]="addressForm">
+      <ion-item>
+        <input #addressInput placeholder="Street" formControlName="street" clearInput="true"/>
+      </ion-item>
+      <div *ngIf="(addressForm.get('street').dirty || addressForm.get('street').touched) && addressForm.get('street').errors" class="errors">
+        <span *ngIf="addressForm.get('street').errors?.['required']">Street is required</span>
+      </div>
+
+      <ion-item>
+        <ion-input placeholder="Postal Code" formControlName="postalCode" clearInput="true" type="number"></ion-input>
+      </ion-item>
+      <div *ngIf="(addressForm.get('postalCode').dirty || addressForm.get('postalCode').touched) && addressForm.get('postalCode').errors" class="errors">
+        <span *ngIf="addressForm.get('postalCode').errors?.['required']">Postal Code is required</span>
+      </div>
+
+      <ion-item>
+        <ion-input placeholder="Number/Letter" formControlName="number" clearInput="true"></ion-input>
+      </ion-item>
+      <div *ngIf="(addressForm.get('number').dirty || addressForm.get('number').touched) && addressForm.get('number').errors" class="errors">
+        <span *ngIf="addressForm.get('number').errors?.['required']">Number is required</span>
+      </div>
+
+      <ion-item>
+        <ion-input placeholder="Country" formControlName="country" clearInput="true"></ion-input>
+      </ion-item>
+      <div *ngIf="(addressForm.get('country').dirty || addressForm.get('country').touched) && addressForm.get('country').errors" class="errors">
+        <span *ngIf="addressForm.get('country').errors?.['required']">Country is required</span>
+      </div>
+
+      <ion-item>
+        <ion-input placeholder="Province" formControlName="province" clearInput="true"></ion-input>
+      </ion-item>
+      <div *ngIf="(addressForm.get('province').dirty || addressForm.get('province').touched) && addressForm.get('province').errors" class="errors">
+        <span *ngIf="addressForm.get('province').errors?.['required']">Province is required</span>
+      </div>
+
+      <ion-item>
+        <ion-input placeholder="City" formControlName="city" clearInput="true"></ion-input>
+      </ion-item>
+      <div *ngIf="(addressForm.get('city').dirty || addressForm.get('city').touched) && addressForm.get('city').errors" class="errors">
+        <span *ngIf="addressForm.get('city').errors?.['required']">City is required</span>
+      </div>
+
+      <ion-item>
+        <ion-input placeholder="Community" formControlName="community" clearInput="true"></ion-input>
+      </ion-item>
+      <div *ngIf="(addressForm.get('community').dirty || addressForm.get('community').touched) && addressForm.get('community').errors" class="errors">
+        <span *ngIf="addressForm.get('community').errors?.['required']">Community is required</span>
+      </div>
+
+    </form>
+
+    <div id="button_container" class="ion-padding">
+      <ion-button (click)="saveAddress()" expand="full" [disabled]="this.addressForm.invalid">Save Address</ion-button>
+      <ion-button (click)="goBack()" expand="full">Back</ion-button>
+    </div>
+  </div>
+</ion-content>

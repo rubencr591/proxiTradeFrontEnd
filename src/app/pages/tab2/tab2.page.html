@@ -1,0 +1,95 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start"> 
+      <ion-menu-button menu="conversationMenu" id="menuConversation"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Chats</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="selectUser()">
+        <ion-icon slot="icon-only" name="add"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <div *ngIf="selectedConversation != null" class="conversation-header">
+    <ion-avatar id="conversation_picture">
+      <img [src]="selectedConversation.picture || 'assets/profilePictureDefault.png'">
+    </ion-avatar>
+    <ion-title id="conversation_title">{{ selectedConversation.title }}</ion-title>
+  </div>
+</ion-header>
+
+<ion-menu side="start" menuId="conversationMenu" contentId="main-content">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Conversations</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item *ngFor="let conversation of conversations" (click)="selectConversation(conversation)">
+        <ion-avatar slot="start">
+          <img [src]="conversation.picture || 'assets/profilePictureDefault.png'">
+        </ion-avatar>
+        <div class="item-content">
+          {{ conversation.title }}
+        </div>
+        <ion-button slot="end" (click)="deleteConversation(conversation)">
+          <ion-icon name="trash"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+
+<ion-content class="ion-padding" id="main-content">
+  <div class="messages-container" #messagesContainer>
+    <ion-grid>
+      <ion-row *ngFor="let message of conversationMessages">
+        <ion-col size="9" [offset]="message.senderId === currentUserId ? 3 : 0"
+          [ngClass]="{ 'my-message': message.senderId === currentUserId, 'other-message': message.senderId !== currentUserId }">
+          <div class="message-content">
+            <ng-container *ngIf="isOfferMessage(message)">
+              <div *ngIf="message">
+                <span>{{ message.message}}</span>
+                <br>
+                <span>Offer Price: {{ message.offerPrice | currency:'EUR' }}</span>
+                <div id="aceptRejectButtons" *ngIf="message.senderId !== currentUserId">
+                  <ion-button (click)="this.acceptOffer(message)" >Accept</ion-button>
+                  <ion-button (click)="this.rejectOffer(message)">Reject</ion-button>
+                </div>
+              </div>
+            </ng-container>
+            <ng-container *ngIf="!isOfferMessage(message)">
+              <span>{{ message.message }}</span>
+            </ng-container>
+            <div class="time"><br>{{ message.timestamp | date:'short' }}</div>
+          </div>
+        </ion-col>
+      </ion-row>
+      
+    </ion-grid>
+  </div>
+
+  <div class="message-input" *ngIf="selectedConversation">
+    <ion-row class="divider-row"></ion-row>
+    <ion-row>
+      <ion-col size="10">
+        <ion-textarea [(ngModel)]="messageText" placeholder="Write a message"></ion-textarea>
+      </ion-col>
+      <ion-col size="2">
+        <ion-button (click)="sendMessage()">
+          <ion-icon slot="icon-only" name="send"></ion-icon>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+    <div class="ion-text-center" *ngIf="!selectedConversation">
+      <ion-text class="no-conversation-text">Select a conversation to start chatting</ion-text>
+    </div>
+  
+  
+</ion-content>
+
+<ion-footer></ion-footer>

@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Select Payment Method</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="paymentForm" (ngSubmit)="proceedToPayment()">
+    <ion-list>
+      <ion-radio-group formControlName="method">
+        <ion-list-header>
+          <ion-label>Payment Method</ion-label>
+        </ion-list-header>
+
+        <ion-item>
+          <ion-label slot="start">PayPal</ion-label>
+          <ion-radio slot="start" value="paypal"></ion-radio>
+        </ion-item>
+
+        <ion-item>
+          <ion-label slot="start">Credit Card</ion-label>
+          <ion-radio slot="start" value="card"></ion-radio>
+        </ion-item>
+      </ion-radio-group>
+
+      <div *ngIf="paymentForm.get('method').value === 'card'">
+        <ion-item>
+          <ion-input formControlName="cardNumber" type="number" placeholder="Card Number"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="cardExpiry" type="text" placeholder="Expiry Date"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input formControlName="cardCVC" type="number" placeholder="CVC"></ion-input>
+        </ion-item>
+      </div>
+    </ion-list>
+
+    <ion-item>
+      <ion-label>Product Price</ion-label>
+      <ion-note slot="end">{{ product.salePrice | currency:'EUR' }}</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Shipping Cost</ion-label>
+      <ion-note slot="end">{{ shippingCost | currency:'EUR' }}</ion-note>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Total Amount</ion-label>
+      <ion-note slot="end">{{ totalAmount | currency:'EUR' }}</ion-note>
+    </ion-item>
+
+    <ion-button expand="full" type="submit" [disabled]="paymentForm.invalid && (paymentForm.get('method').value !== 'paypal')">Proceed to Payment</ion-button>
+  </form>
+</ion-content>

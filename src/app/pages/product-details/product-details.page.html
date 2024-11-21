@@ -1,0 +1,98 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="product-container">
+    <ion-card>
+      <swiper-container [pagination]="true" navigation="true">
+        <swiper-slide *ngFor="let image of product.images; let i = index" (click)="openModal(i)">
+          <div class="image-container">
+            <img [src]="image.base64">
+          </div>
+        </swiper-slide>
+        <div class="swiper-pagination"></div>
+      </swiper-container>
+  
+      <ion-card-header>
+        <ion-card-title>{{ product.salePrice | currency:'EUR' }}</ion-card-title>
+        <ion-card-subtitle>{{ product.name }}</ion-card-subtitle>
+        <ion-button (click)="this.deleteProduct()" *ngIf="this.myproduct">
+          <ion-icon name="trash-outline"></ion-icon>
+          Delete
+        </ion-button>
+      </ion-card-header>
+  
+      <ion-card-content>
+        <div *ngIf="!this.myproduct">
+          <ion-badge *ngIf="product.availability" color="success">Available</ion-badge>
+          <ion-badge *ngIf="!product.availability" color="danger">No available</ion-badge>
+        </div>
+        <div *ngIf="this.myproduct">
+          <ion-badge *ngIf="product.availability" color="success">Not sold</ion-badge>
+          <ion-badge *ngIf="!product.availability" color="danger">Sold</ion-badge>
+        </div>
+        <p>{{ product.category.name }}</p>
+        <p>{{ product.description }}</p>
+      </ion-card-content>
+  
+      <ion-footer *ngIf="!this.myproduct">
+        <ion-button expand="full" color="primary" (click)="buyProduct()">Buy</ion-button>
+      </ion-footer>
+    </ion-card>
+
+    <div class="owner-info" >
+      <ion-item>
+        <ion-label>Owner</ion-label>
+        <ion-avatar slot="end">
+          <img [src]="'assets/profilePictureDefault.png'"  *ngIf="!this.productOwner?.profilePicture"/>
+          <img [src]="'data:image/jpeg;base64,'+ productOwner?.profilePicture || 'assets/profilePictureDefault.png'"   *ngIf="this.productOwner?.profilePicture"/>
+        </ion-avatar>
+      </ion-item>
+      <ion-item *ngIf="this.productOwner">
+        <ion-label>{{this.productOwner.name}} </ion-label>
+      </ion-item>
+    </div>
+    <div id="map"></div>
+  </div>
+</ion-content>
+
+<ion-modal #imageModal [isOpen]="isModalOpen" (didDismiss)="closeModal()">
+  <ng-template>
+    <ion-header>
+      <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-button (click)="closeModal()">Close</ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <swiper-container [navigation]="true" [pagination]="{ clickable: true }" [loop]="true" [initialSlide]="selectedImageIndex">
+        <swiper-slide *ngFor="let image of product.images">
+          <div class="modal-image-container">
+            <img [src]="image.base64" />
+          </div>
+        </swiper-slide>
+      </swiper-container>
+    </ion-content>
+  </ng-template>
+</ion-modal>
+
+<ion-footer >
+  <ion-toolbar class="centered-toolbar">
+    <ion-buttons   >
+      <ion-button (click)="openChat()" *ngIf="!this.myproduct">
+        <ion-icon slot="start" name="chatbubble-ellipses-outline"></ion-icon>
+        Chat
+      </ion-button>
+      <ion-button *ngIf="this.myproduct" (click)="editProduct()">
+        <ion-icon name="pencil-outline" slot="start"></ion-icon>
+                Edit
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

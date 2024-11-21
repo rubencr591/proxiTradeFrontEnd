@@ -1,0 +1,66 @@
+
+  ion-card {
+    margin: 10px;
+  }
+  
+  ion-card-header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  ion-card-title {
+    font-size: 16px;
+  }
+  
+  ion-card-subtitle {
+    font-size: 14px;
+    color: var(--ion-color-medium);
+  }
+  
+  .image-container {
+    width: 100%;
+    height: 200px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #ffffff;
+  }
+  
+  .image-container ion-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+  }
+  
+  
+  ion-badge {
+    margin-top: 10px;
+  }
+  
+  ion-toolbar {
+    --background: var(--ion-color-primary);
+    --color: var(--ion-color-primary-contrast);
+  }
+
+  .custom-ion-item {
+    display: flex;
+    align-items: center;
+  }
+  
+  .custom-ion-item ion-label {
+    flex: none;
+  }
+  
+  .custom-ion-item ion-select {
+    flex: 1;
+    margin-left: 120px;
+
+  }
+  
+#product-price {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--ion-color-secondary-contrast);
+}

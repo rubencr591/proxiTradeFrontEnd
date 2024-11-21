@@ -1,0 +1,20 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab3"></ion-back-button>
+    </ion-buttons>
+    <ion-title>My Sold Products</ion-title>
+  </ion-toolbar>
+  
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let transaction of soldProducts">
+      <ion-label>User Buyer Name: {{ transaction.userBuyerName }}</ion-label>
+      <ion-label>Product Name: {{ transaction.productName }}</ion-label>
+      <ion-label>Amount: {{ transaction.amount | currency:'EUR' }}</ion-label>
+      <ion-label>Type: {{ transaction.type }}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

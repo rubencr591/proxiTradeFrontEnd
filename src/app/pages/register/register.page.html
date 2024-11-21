@@ -1,0 +1,82 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Register</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="logo-container">
+    <img src="assets/icon/icon.png" alt="App Logo">
+    <div class="app-name">PROXITRADE</div>
+  </div>
+  <div class="form-container">
+    <form [formGroup]="credentialForm">
+      <ion-item>
+        <ion-input
+          placeholder="Username"
+          formControlName="username"
+          autofocus="true"
+          clearInput="true"
+        ></ion-input>
+      </ion-item>
+      <div
+        *ngIf="(credentialForm.get('username').dirty || credentialForm.get('username').touched) && credentialForm.get('username').errors"
+        class="errors"
+      >
+        <span *ngIf="credentialForm.get('username').errors?.['required']">Username is required</span>
+      </div>
+
+      <ion-item>
+        <ion-input
+          placeholder="Email address"
+          formControlName="email"
+          clearInput="true"
+        ></ion-input>
+      </ion-item>
+      <div
+        *ngIf="(credentialForm.get('email').dirty || credentialForm.get('email').touched) && credentialForm.get('email').errors"
+        class="errors"
+      >
+        <span *ngIf="credentialForm.get('email').errors?.['required']">Email is required</span>
+        <span *ngIf="credentialForm.get('email').errors?.['email']">Email is invalid</span>
+      </div>
+
+      <ion-item>
+        <ion-input
+          placeholder="Password"
+          type="password"
+          formControlName="password"
+          clearInput="true"
+        ></ion-input>
+      </ion-item>
+      <div
+        *ngIf="(credentialForm.get('password').dirty || credentialForm.get('password').touched) && credentialForm.get('password').errors"
+        class="errors"
+      >
+        <span *ngIf="credentialForm.get('password').errors?.['required']">Password is required</span>
+        <span *ngIf="credentialForm.get('password').errors?.['minlength']">Password needs to be 6 characters</span>
+      </div>
+
+      <ion-item>
+        <ion-input
+          placeholder="Phone"
+          formControlName="phone"
+          clearInput="true"
+        ></ion-input>
+      </ion-item>
+      <div
+        *ngIf="(credentialForm.get('phone').dirty || credentialForm.get('phone').touched) && credentialForm.get('phone').errors"
+        class="errors"
+      >
+        <span *ngIf="credentialForm.get('phone').errors?.['required']">Phone is required</span>
+        <span *ngIf="credentialForm.get('phone').errors?.['pattern']">Invalid format</span>
+        <span *ngIf="credentialForm.get('phone').errors?.['minlength']">Phone needs to be 9 characters</span>
+        <span *ngIf="credentialForm.get('phone').errors?.['maxlength']">Phone number cannot be more than 15 digits long</span>
+      </div>
+    </form>
+    <div id="button_container" class="ion-padding">
+      <ion-button (click)="register()" expand="full" [disabled]="this.credentialForm.invalid">Register</ion-button>
+      <ion-button (click)="login()" expand="full">Login</ion-button>
+    </div>
+  </div>
+</ion-content>

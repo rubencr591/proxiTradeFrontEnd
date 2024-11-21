@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Products
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-segment [(ngModel)]="segmentValue" (ionChange)="filterProducts()" value="all">
+    <ion-segment-button value="all">
+      <ion-label>All Products</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="nearby">
+      <ion-label>Nearby Products</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+
+  <ion-item class="custom-ion-item">
+    <ion-label position="floating">Category</ion-label>
+    <ion-select [(ngModel)]="selectedCategoryId" (ionChange)="onCategoryChange()">
+      <ion-select-option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  
+  
+  <ion-grid>
+    <ion-row>
+      <ion-col size="6" size-md="4" size-lg="3" *ngFor="let product of products">
+        <ion-card (click)="selectProduct(product)">
+          <ion-card-header>
+            <ion-card-title><strong>{{ product.name }}</strong></ion-card-title>
+            <ion-card-subtitle>{{ product.categoryName }}</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="image-container" (click)="selectProduct(product)">
+              <ion-img [src]="product.images[0]?.base64" *ngIf="product.images && product.images.length > 0"></ion-img>
+            </div>
+            <p id="product-price">{{ product.salePrice | currency:'EUR' }}</p>
+            <ion-badge *ngIf="product.availability" color="success">Available</ion-badge>
+            <ion-badge *ngIf="!product.availability" color="danger">No available</ion-badge>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

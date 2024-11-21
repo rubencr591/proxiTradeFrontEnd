@@ -1,0 +1,114 @@
+.product-container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 800px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.swiper-container {
+  width: 100%;
+  height: 400px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-container {
+  width: 100%;
+  height: 300px; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: #ffffff;
+}
+
+.image-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+ion-card-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--ion-color-primary);
+}
+
+ion-card-subtitle {
+  font-size: 1.2rem;
+  color: var(--ion-color-medium);
+}
+
+ion-card-content {
+  font-size: 1rem;
+  color: var(--ion-color-dark);
+  line-height: 1.5;
+}
+
+ion-footer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+ion-footer ion-button {
+  flex: 1;
+  margin: 0 5px;
+  font-size: 1.2rem;
+  border-radius: 5px;
+}
+
+ion-footer ion-button:first-child {
+  margin-left: 0;
+}
+
+ion-footer ion-button:last-child {
+  margin-right: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .product-container {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+.modal-image-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-image-container img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+#map {
+  margin-top: 20px;
+  height: 400px;
+  width: 100%;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.owner-info{
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+
+}
+

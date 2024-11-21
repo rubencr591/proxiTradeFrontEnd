@@ -1,0 +1,48 @@
+ion-toolbar {
+    --background: #218afb; 
+
+  }
+  
+  ion-title {
+    font-size: 1.5rem; 
+    color: var(--ion-color-primary-contrast);
+
+  }
+  
+
+  
+  form {
+    padding: 20px; 
+  }
+  
+  ion-list {
+    background-color: transparent; 
+  }
+  
+  ion-radio {
+    --color-checked: #3880ff; 
+  }
+  
+  ion-input {
+
+    border-radius: 5px; 
+    border: 1px solid #ccc; 
+  }
+  
+
+  ion-button {
+    margin-top: 20px; 
+  }
+  
+  ion-label {
+    font-weight: bold; 
+  }
+  
+  ion-back-button {
+    color: var(--ion-color-primary-contrast); 
+  }
+
+  ion-note {
+    font-size: large;
+  }
+  

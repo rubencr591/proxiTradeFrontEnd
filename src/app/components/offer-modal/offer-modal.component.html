@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Make an Offer</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismiss()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ product.name }}</ion-card-title>
+    </ion-card-header>
+    <div class="image-container">
+      <ion-img [src]="product.images[0].base64" alt="Product Image"></ion-img>
+
+    </div>
+    <ion-card-content>
+      <p>Description: {{ product.description }}</p>
+      <p>Price: €{{ product.salePrice }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-item>
+    <ion-input type="number" [(ngModel)]="offerPrice" class="price-input" placeholder="Enter Your Offer Price"></ion-input>
+    <ion-label slot="end" class="currency-label">€</ion-label>
+  </ion-item>
+  
+
+  <ion-button expand="block" (click)="sendOffer()" [disabled]="!this.offerPrice">Send Offer</ion-button>
+</ion-content>

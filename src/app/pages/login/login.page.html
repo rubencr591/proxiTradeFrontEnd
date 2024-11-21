@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="logo-container">
+    <img src="assets/icon/icon.png" alt="App Logo">
+    <div class="app-name">PROXITRADE</div>
+  </div>
+  <div class="form-container">
+    <form [formGroup]="credentialForm">
+      <ion-item>
+        <ion-input
+          placeholder="Email address"
+          formControlName="email"
+          autofocus="true"
+          clearInput="true"
+        ></ion-input>
+      </ion-item>
+      <div *ngIf="(email.dirty || email.touched) && credentialForm.get('email').errors" class="errors">
+        <span *ngIf="credentialForm.get('email').errors?.['required']">Email is required</span>
+        <span *ngIf="credentialForm.get('email').errors?.['email']">Email is invalid</span>
+      </div>
+
+      <ion-item>
+        <ion-input
+          placeholder="Password"
+          type="password"
+          formControlName="password"
+          clearInput="true"
+        ></ion-input>
+      </ion-item>
+      <div *ngIf="(password.dirty || password.touched) && credentialForm.get('password').errors" class="errors">
+        <span *ngIf="credentialForm.get('password').errors?.['required']">Password is required</span>
+        <span *ngIf="credentialForm.get('password').errors?.['minlength']">Password needs to be 6 characters</span>
+      </div>
+    </form>
+
+    <div id="button_container" class="ion-padding">
+      <ion-button (click)="login()" expand="full" [disabled]="this.credentialForm.invalid">Login</ion-button>
+      <ion-button (click)="register()" expand="full">Register</ion-button>
+    </div>
+  </div>
+</ion-content>

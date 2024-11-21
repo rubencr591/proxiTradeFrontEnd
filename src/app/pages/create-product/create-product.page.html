@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/tabs/tab3"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Create product</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-label position="floating">Name</ion-label>
+    <ion-input type="text" [(ngModel)]="product.name" required></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating" >Description</ion-label>
+    <ion-textarea [(ngModel)]="product.description" required></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="floating">Category</ion-label>
+    <ion-select [(ngModel)]="this.selectedCategoryId">
+      <ion-select-option *ngFor="let category of categories" [value]="category.id">{{category.name}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  
+  <ion-item class="price-item">
+    <ion-label position="floating">Sale price</ion-label>
+    <ion-input type="number" [(ngModel)]="product.salePrice"></ion-input>
+  </ion-item>
+
+  <ion-item >
+    <ion-label position="floating">Availability</ion-label>
+    <ion-toggle [(ngModel)]="product.availability"></ion-toggle>
+  </ion-item>
+  
+
+
+  <div class="upload-image">
+    <input type="file" accept="image/*" (change)="onFileChange($event)" multiple>
+  </div>
+
+
+<div class="existing-images" *ngFor="let image of product.images" >
+  <ion-img [src]="image.base64" alt="Product Image"></ion-img>
+  <ion-button (click)="deleteImage(image)" color="danger">Delete</ion-button>
+</div>
+
+  <div class="create-button">
+    <ion-button (click)="createProduct()" *ngIf="!this.idProduct">Create product</ion-button>
+
+    <ion-button (click)="editProduct()" *ngIf="this.idProduct">Edit product</ion-button>
+  </div>
+</ion-content>
