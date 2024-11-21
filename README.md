@@ -16,5 +16,5 @@ Este repositorio contiene el frontend desarrollado en Angular como parte de mi T
 - **Chat**: Firebase para mensajería en tiempo real.  
 - **Geolocalización**: Google Maps API para visualización de ubicaciones.  
 - **Arquitectura**: Basada en microservicios y modelo vista-controlador (MVC).
-- **Backend**: Springboot (Kotlin) 
+- **Backend**: Springboot (Kotlin) https://github.com/rubencr591/proxiTradeBackEnd_Springboot
 
